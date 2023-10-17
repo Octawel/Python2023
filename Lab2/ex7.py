@@ -1,7 +1,7 @@
 def extrage_primul_numar(text):
     numar = ""
     for caracter in text:
-        if caracter.isdigit() or caracter == '.' or (caracter == '-' and not numar):
+        if caracter.isdigit() or caracter == '.':
             numar += caracter
         elif numar:
             break

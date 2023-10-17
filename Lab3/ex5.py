@@ -1,11 +1,11 @@
-def diagonala_principala_la_0(matrice):
-    if not matrice:
-        return matrice
+def inlocuieste_sub_diagonala_principala_cu_zero(matrice):
+    numar_rinduri = len(matrice)
+    numar_coloane = len(matrice[0]) if numar_rinduri > 0 else 0
 
-    num_rows, num_cols = len(matrice), len(matrice[0])
-
-    for i in range(min(num_rows, num_cols)):
-        matrice[i][i] = 0
+    for rind in range(numar_rinduri):
+        for coloana in range(numar_coloane):
+            if coloana < rind:
+                matrice[rind][coloana] = 0
 
     return matrice
 
@@ -15,6 +15,6 @@ matrice = [
     [7, 8, 9]
 ]
 
-matrice_modificata = diagonala_principala_la_0(matrice)
-for linie in matrice_modificata:
-    print(linie)
+rezultat = inlocuieste_sub_diagonala_principala_cu_zero(matrice)
+for rind in rezultat:
+    print(rind)
