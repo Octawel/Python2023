@@ -1,10 +1,10 @@
 def operatii_cu_liste(a, b):
-    intersection = list(set(a) & set(b))  #Intersecția
-    reunite = list(set(a) | set(b))  #Reuniunea
-    diferenta_a_b = list(set(a) - set(b))  #a - b
-    diferenta_b_a = list(set(b) - set(a))  #b - a
+    intersectie = list(set(a) & set(b))
+    reuniune = list(set(a) | set(b))  
+    diferenta_a_b = list(set(a) - set(b))  
+    diferenta_b_a = list(set(b) - set(a))  
     
-    return intersection, reunite, diferenta_a_b, diferenta_b_a
+    return intersectie, reuniune, diferenta_a_b, diferenta_b_a
 
 
 lista_a = [1, 2, 3, 4, 5]

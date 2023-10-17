@@ -1,5 +1,5 @@
 def elemente_de_x_ori_in_liste(x, *liste):
-    frecventa = {} 
+    frecventa = {} #dictionar
 
     for lista in liste:
         for element in lista:

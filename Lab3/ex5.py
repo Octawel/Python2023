@@ -1,6 +1,6 @@
 def diagonala_principala_la_0(matrice):
     if not matrice:
-        return matrice  # Returnăm matricea originală dacă este goală
+        return matrice
 
     num_rows, num_cols = len(matrice), len(matrice[0])
 
@@ -9,7 +9,6 @@ def diagonala_principala_la_0(matrice):
 
     return matrice
 
-# Exemplu de utilizare:
 matrice = [
     [1, 2, 3],
     [4, 5, 6],
