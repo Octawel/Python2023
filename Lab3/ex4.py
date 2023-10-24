@@ -14,7 +14,7 @@ def compune_melodie(note, miscari, start):
     return melodie
 
 note = ["do", "re", "mi", "fa", "sol"]
-miscari = [1, -3, 4, 2]
+miscari = [1, -3, 4, 2, 10]
 start = 2
 
 rezultat = compune_melodie(note, miscari, start)
