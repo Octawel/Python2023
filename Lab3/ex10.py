@@ -1,16 +1,16 @@
-def liste_in_tupluri(*listele):
-    max_len = max([len(lista) for lista in listele])
+def loop(mapping):
+    vizitat = set()
     rezultat = []
+    cheie = "start"
 
-    for i in range(max_len):
-        tuplu = tuple(lista[i] if i < len(lista) else None for lista in listele)
-        rezultat.append(tuplu)
+    while cheie not in vizitat and cheie in mapping:
+        vizitat.add(cheie)
+        valoare = mapping[cheie]
+        rezultat.append(valoare)
+        cheie = valoare
 
     return rezultat
 
-lista1 = [1, 2, 3]
-lista2 = [5, 6, 7]
-lista3 = ["a", "b", "c"]
-
-rezultat = liste_in_tupluri(lista1, lista2, lista3)
+mapping = {'start': 'a', 'b': 'a', 'a': '6', '6': 'z', 'x': '2', 'z': '2', '2': '2', 'y': 'start'}
+rezultat = loop(mapping)
 print(rezultat)

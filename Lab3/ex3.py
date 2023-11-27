@@ -1,18 +1,27 @@
-def operatii_cu_liste(a, b):
-    intersectie = list(set(a) & set(b))
-    reuniune = list(set(a) | set(b))  
-    diferenta_a_b = list(set(a) - set(b))  
-    diferenta_b_a = list(set(b) - set(a))  
-    
-    return intersectie, reuniune, diferenta_a_b, diferenta_b_a
+def compara_dicționare(dicționar1, dicționar2):
+    if type(dicționar1) != type(dicționar2):
+        return False
 
+    if len(dicționar1) != len(dicționar2):
+        return False
 
-lista_a = [1, 2, 3, 4, 5]
-lista_b = [3, 4, 5, 6, 7]
+    for cheie, valoare in dicționar1.items():
+        if cheie not in dicționar2:
+            return False
+        if isinstance(valoare, dict):
+            if not compara_dicționare(valoare, dicționar2[cheie]):
+                return False
+        elif isinstance(valoare, list) or isinstance(valoare, set):
+            if not valoare == dicționar2[cheie]:
+                return False
+        else:
+            if valoare != dicționar2[cheie]:
+                return False
 
-inter, un, a_minus_b, b_minus_a = operatii_cu_liste(lista_a, lista_b)
+    return True
 
-print("Intersecția a și b:", inter)
-print("Reuniunea a și b:", un)
-print("Diferența a - b:", a_minus_b)
-print("Diferența b - a:", b_minus_a)
+d1 = {'a': 1, 'b': [1, 2, {'d': 2}, 3], 'c': {'x': 10, 'y': 20}}
+d2 = {'a': 1, 'b': [1, 2, {'d': 3}, 3], 'c': {'x': 10, 'y': 20}}
+
+rezultat = compara_dicționare(d1, d2)
+print(rezultat) 

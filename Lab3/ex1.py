@@ -1,16 +1,15 @@
-def fibbonaci(n):
-    fib_list = [] 
+def operatii_cu_seturi(a, b):
+    intersectie = set(a) & set(b)
+    reuniune = set(a) | set(b)
+    diferenta_ab = set(a) - set(b)
+    diferenta_ba = set(b) - set(a)
 
-    a, b = 0, 1
-    fib_list.append(a)
-    fib_list.append(b)
+    rezultate = [intersectie, reuniune, diferenta_ab, diferenta_ba]
+    return rezultate
 
-    while len(fib_list) < n:
-        a, b = b, a + b
-        fib_list.append(b)
+a = [1, 2, 3, 4, 5]
+b = [3, 4, 5, 6, 7]
 
-    return fib_list
-
-n = int(input("Introduceți câte numere Fibonacci doriți: "))
-rezultat = fibbonaci(n)
-print(rezultat)
+rezultate = operatii_cu_seturi(a, b)
+for rezultat in rezultate:
+    print(rezultat)

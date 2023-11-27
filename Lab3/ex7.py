@@ -1,19 +1,28 @@
-def este_palindrom(numar):
-    return str(numar) == str(numar)[::-1]
+def operatii_cu_seturi(*seturi):
+    rezultat = {}
 
-def numere_palindrom(lista):
-    palindroame = [numar for numar in lista if este_palindrom(numar)]
+    for i in range(len(seturi)):
+        for j in range(i + 1, len(seturi)):
+            set1 = seturi[i]
+            set2 = seturi[j]
 
-    if palindroame:
-        cel_mai_mare_palindrom = max(palindroame)
-    else:
-        cel_mai_mare_palindrom = None
+            cheie_reuniune = f"{set1} | {set2}"
+            rezultat[cheie_reuniune] = set1 | set2
 
-    return len(palindroame), cel_mai_mare_palindrom
+            cheie_intersectie = f"{set1} & {set2}"
+            rezultat[cheie_intersectie] = set1 & set2
 
+            cheie_diferenta_ab = f"{set1} - {set2}"
+            rezultat[cheie_diferenta_ab] = set1 - set2
 
-numere = [123, 121, 1331, 456, 78987, 98765489]
+            cheie_diferenta_ba = f"{set2} - {set1}"
+            rezultat[cheie_diferenta_ba] = set2 - set1
 
-rezultat = numere_palindrom(numere)
-print("Numere palindroame găsite:", rezultat[0])
-print("Cel mai mare palindrom găsit:", rezultat[1])
+    return rezultat
+
+set1 = {1, 2}
+set2 = {2, 3}
+
+rezultat = operatii_cu_seturi(set1, set2)
+for cheie, valoare in rezultat.items():
+    print(f"{cheie}: {valoare}")

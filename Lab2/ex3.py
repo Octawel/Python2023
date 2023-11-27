@@ -1,16 +1,18 @@
-def numar_aparitii(sir1, sir2):
-    numar_aparitii = 0
-    index = sir2.find(sir1)
+def operatii_cu_liste(a, b):
+    intersectie = list(set(a) & set(b))
+    reuniune = list(set(a) | set(b))  
+    diferenta_a_b = list(set(a) - set(b))  
+    diferenta_b_a = list(set(b) - set(a))  
+    
+    return intersectie, reuniune, diferenta_a_b, diferenta_b_a
 
-    while index != -1:
-        numar_aparitii += 1
-        index = sir2.find(sir1, index + 1)
 
-    return numar_aparitii
+lista_a = [1, 2, 3, 4, 5]
+lista_b = [3, 4, 5, 6, 7]
 
-sir1 = input("Introduceți primul șir: ")
-sir2 = input("Introduceți al doilea șir: ")
+inter, un, a_minus_b, b_minus_a = operatii_cu_liste(lista_a, lista_b)
 
-rezultat = numar_aparitii(sir1, sir2)
-
-print(f"Șirul '{sir1}' apare de {rezultat} ori în șirul '{sir2}'.")
+print("Intersecția a și b:", inter)
+print("Reuniunea a și b:", un)
+print("Diferența a - b:", a_minus_b)
+print("Diferența b - a:", b_minus_a)

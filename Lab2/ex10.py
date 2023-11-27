@@ -1,16 +1,16 @@
-def numara_cuvinte(propozitie):
-    cuvinte = propozitie.split()
+def liste_in_tupluri(*listele):
+    max_len = max([len(lista) for lista in listele])
+    rezultat = []
 
-    for cuvant in cuvinte:
-        if "  " in cuvant:
-            raise ValueError("Propoziția conține mai mult de un spațiu între cuvinte.")
+    for i in range(max_len):
+        tuplu = tuple(lista[i] if i < len(lista) else None for lista in listele)
+        rezultat.append(tuplu)
 
-    return len(cuvinte)
+    return rezultat
 
-propozitie = input("Introduceți o propoziție: ")
+lista1 = [1, 2, 3]
+lista2 = [5, 6, 7]
+lista3 = ["a", "b", "c"]
 
-try:
-    numar_cuvinte = numara_cuvinte(propozitie)
-    print(f"Propoziția conține {numar_cuvinte} cuvinte.")
-except ValueError as e:
-    print(e)
+rezultat = liste_in_tupluri(lista1, lista2, lista3)
+print(rezultat)

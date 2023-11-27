@@ -1,25 +1,22 @@
-def litera_cea_mai_comuna(sir):
-    sir = sir.lower() 
-    frecventa = {}
+def locuri_nevizibile(matrice):
+    n = len(matrice)
+    m = len(matrice[0])
+    locuri_nevizibile = []
 
-    for caracter in sir:
-        if 'a' <= caracter <= 'z':
-            if caracter in frecventa:
-                frecventa[caracter] += 1
-            else:
-                frecventa[caracter] = 1
+    for i in range(n):
+        for j in range(m):
+            for k in range(i):
+                if matrice[k][j] >= matrice[i][j]:
+                    locuri_nevizibile.append((i, j))
+                    break
 
-    if not frecventa:
-        return None, 0  
-    litera_maxima = max(frecventa, key=frecventa.get)
-    aparitii = frecventa[litera_maxima]
+    return locuri_nevizibile
 
-    return litera_maxima, aparitii
-
-text = input("Introduceți un șir de caractere: ")
-litera, aparitii = litera_cea_mai_comuna(text)
-
-if litera is not None:
-    print(f"Litera cea mai comună este '{litera}' și apare de {aparitii} ori.")
-else:
-    print("Nu au fost găsite litere de la 'a' la 'z' în șir.")
+matrice = [
+    [1, 2, 3, 2, 1, 1],
+    [2, 4, 4, 3, 7, 2],
+    [5, 5, 2, 5, 6, 4],
+    [6, 6, 7, 6, 7, 5]
+]
+rezultat = locuri_nevizibile(matrice)
+print(rezultat) 

@@ -1,22 +1,16 @@
-import math
+def fibbonaci(n):
+    fib_list = [] 
 
-def cmmdc(numere):
-    if len(numere) < 2:
-        return "Pentru a calcula cmmdc este nevoie de cel putin 2 numere"
+    a, b = 0, 1
+    fib_list.append(a)
+    fib_list.append(b)
 
-    rezultat_cmmdc = numere[0]
-    for num in numere[1:]:
-        rezultat_cmmdc = math.gcd(rezultat_cmmdc, num)
-    return rezultat_cmmdc
+    while len(fib_list) < n:
+        a, b = b, a + b
+        fib_list.append(b)
 
-try:
-    numere_input = input("Introdu numere separate prin spatiu: ")
-    numere = list(map(int, numere_input.split()))
-    
-    gcd = cmmdc(numere)
-    print("Cel mai mare divizor comun este:", gcd)
+    return fib_list
 
-except ValueError:
-    print("Input gresit. Introdu numere intregi separate prin spatiu.")
-except Exception as e:
-    print("Eroare:", str(e))
+n = int(input("Introduceți câte numere Fibonacci doriți: "))
+rezultat = fibbonaci(n)
+print(rezultat)

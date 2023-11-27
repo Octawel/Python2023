@@ -1,19 +1,21 @@
-def camel_case_to_snake_case(input_str):
-    output_str = ""
-    
-    for char in input_str:
-        if char.isupper():
-            output_str += "_"
-            output_str += char.lower()
-        else:
-            output_str += char
-    
-    if output_str.startswith("_"):
-        output_str = output_str[1:]
-    
-    return output_str
+def compune_melodie(note, miscari, start):
+    melodie = []
+    pozitie = start
 
-input_str = input("Introduceți un șir în UpperCamelCase: ")
-snake_case_str = camel_case_to_snake_case(input_str)
+    for miscare in miscari:
+        while miscare < 0:
+            miscare += len(note)
+        while miscare >= len(note):
+            miscare -= len(note)
 
-print(f"Șirul în snake_case este: {snake_case_str}")
+        melodie.append(note[pozitie])
+        pozitie = (pozitie + miscare) % len(note)
+
+    return melodie
+
+note = ["do", "re", "mi", "fa", "sol"]
+miscari = [1, -3, 4, 2, 10]
+start = 2
+
+rezultat = compune_melodie(note, miscari, start)
+print(rezultat)

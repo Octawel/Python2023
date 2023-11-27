@@ -1,14 +1,32 @@
-def numar_aparitii_caractere(text):
-    dictionar_aparitii = {} 
+class Coada:
+    def __init__(self):
+        self.elemente = []
 
-    for caracter in text:
-        if caracter in dictionar_aparitii:
-            dictionar_aparitii[caracter] += 1
+    def push(self, element):
+        self.elemente.append(element)
+
+    def pop(self):
+        if not self.este_goala():
+            return self.elemente.pop(0)
         else:
-            dictionar_aparitii[caracter] = 1
+            return None
 
-    return dictionar_aparitii
+    def peek(self):
+        if not self.este_goala():
+            return self.elemente[0]
+        else:
+            return None
 
-text = "Ana has apples."
-rezultat = numar_aparitii_caractere(text)
-print(rezultat)
+    def este_goala(self):
+        return len(self.elemente) == 0
+
+coada = Coada()
+coada.push(1)
+coada.push(2)
+coada.push(3)
+
+print(coada.pop())  # 1
+print(coada.peek())  # 2
+print(coada.pop())  # 2
+print(coada.pop())  # 3
+print(coada.pop())  # None

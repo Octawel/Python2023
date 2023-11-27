@@ -1,11 +1,19 @@
-def numara_biti_unu(numar):
-    numar_binar = bin(numar)[2:] 
-    numar_biti_1 = numar_binar.count('1') 
-    
-    return numar_binar, numar_biti_1
+def caractere_divizibile_x(x=1, siruri=[], flag=True):
+    rezultat = []
 
-numar = int(input("Introduceți un număr: "))
-bina, biti_unu = numara_biti_unu(numar)
+    for sir in siruri:
+        lista_caractere = []
+        for caracter in sir:
+            cod_ascii = ord(caracter)
+            if (cod_ascii % x == 0) if flag else (cod_ascii % x != 0):
+                lista_caractere.append(caracter)
+        rezultat.append(lista_caractere)
 
-print(f"Reprezentarea binară a numărului {numar} este: {bina}")
-print(f"Numărul de biți de 1 în reprezentarea binară este: {biti_unu}")
+    return rezultat
+
+x = 2
+siruri = ["test", "hello", "lab002"]
+flag = False
+
+rezultat = caractere_divizibile_x(x, siruri, flag)
+print(rezultat)

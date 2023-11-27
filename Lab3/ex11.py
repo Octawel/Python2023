@@ -1,9 +1,10 @@
-def sorteaza_tupluri(lista_tupluri):
-    return sorted(lista_tupluri, key=lambda tuplu: tuplu[1][2])
+def numara_argumente_valabile(*args, **kwargs):
+    contor = 0
+    
+    for arg in args:
+        if arg in kwargs.values():
+            contor += 1
+    return contor
 
-tuplu1 = ('abc', 'bcd')
-tuplu2 = ('abc', 'zza')
-lista_tupluri = [tuplu1, tuplu2]
-
-rezultat = sorteaza_tupluri(lista_tupluri)
+rezultat = numara_argumente_valabile(1, 2, 3, 4, x=1, y=2, z=3, w=5)
 print(rezultat)

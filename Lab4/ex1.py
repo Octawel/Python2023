@@ -1,15 +1,32 @@
-def operatii_cu_seturi(a, b):
-    intersectie = set(a) & set(b)
-    reuniune = set(a) | set(b)
-    diferenta_ab = set(a) - set(b)
-    diferenta_ba = set(b) - set(a)
+class Stiva:
+    def __init__(self):
+        self.elemente = []
 
-    rezultate = [intersectie, reuniune, diferenta_ab, diferenta_ba]
-    return rezultate
+    def push(self, element):
+        self.elemente.append(element)
 
-a = [1, 2, 3, 4, 5]
-b = [3, 4, 5, 6, 7]
+    def pop(self):
+        if not self.este_goala():
+            return self.elemente.pop()
+        else:
+            return None
 
-rezultate = operatii_cu_seturi(a, b)
-for rezultat in rezultate:
-    print(rezultat)
+    def peek(self):
+        if not self.este_goala():
+            return self.elemente[-1]
+        else:
+            return None
+
+    def este_goala(self):
+        return len(self.elemente) == 0
+
+stiva = Stiva()
+stiva.push(1)
+stiva.push(2)
+stiva.push(3)
+
+print(stiva.pop())  # 3
+print(stiva.peek())  # 2
+print(stiva.pop())  # 2
+print(stiva.pop())  # 1
+print(stiva.pop())  # None

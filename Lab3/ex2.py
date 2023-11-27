@@ -1,26 +1,14 @@
-def este_prim(numar):
-    if numar <= 1:
-        return False
-    if numar == 2:
-        return True
-    if numar % 2 == 0:
-        return False
-    for i in range(3, int(numar**0.5) + 1, 2):
-        if numar % i == 0:
-            return False
-    return True
+def numar_aparitii_caractere(text):
+    dictionar_aparitii = {} 
 
-def numere_prime_in_lista():
-    lista = []
-    n = int(input("Introduceți numărul de elemente în listă: "))
-    
-    for i in range(n):
-        numar = int(input(f"Introduceți elementul {i+1}: "))
-        lista.append(numar)
+    for caracter in text:
+        if caracter in dictionar_aparitii:
+            dictionar_aparitii[caracter] += 1
+        else:
+            dictionar_aparitii[caracter] = 1
 
-    numere_prime = [numar for numar in lista if este_prim(numar)]
+    return dictionar_aparitii
 
-    return numere_prime
-
-numere_prime = numere_prime_in_lista()
-print("Numerele prime din lista sunt:", numere_prime)
+text = "Ana has apples."
+rezultat = numar_aparitii_caractere(text)
+print(rezultat)

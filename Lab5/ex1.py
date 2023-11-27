@@ -1,32 +1,55 @@
-class Stiva:
+class Forma:
     def __init__(self):
-        self.elemente = []
+        pass
+    
+    def calculare_aria(self):
+        pass
+    
+    def calculare_perimetru(self):
+        pass
 
-    def push(self, element):
-        self.elemente.append(element)
+class Cerc(Forma):
+    def __init__(self, raza):
+        self.raza = raza
+    
+    def calculare_aria(self):
+        return 3.14159 * self.raza ** 2
+    
+    def calculare_perimetru(self):
+        return 2 * 3.14159 * self.raza
 
-    def pop(self):
-        if not self.este_goala():
-            return self.elemente.pop()
-        else:
-            return None
+class Dreptunghi(Forma):
+    def __init__(self, lungime, latime):
+        self.lungime = lungime
+        self.latime = latime
+    
+    def calculare_aria(self):
+        return self.lungime * self.latime
+    
+    def calculare_perimetru(self):
+        return 2 * (self.lungime + self.latime)
 
-    def peek(self):
-        if not self.este_goala():
-            return self.elemente[-1]
-        else:
-            return None
+class Triunghi(Forma):
+    def __init__(self, latura1, latura2, latura3):
+        self.latura1 = latura1
+        self.latura2 = latura2
+        self.latura3 = latura3
+    
+    def calculare_aria(self):
+        s = (self.latura1 + self.latura2 + self.latura3) / 2
+        return (s * (s - self.latura1) * (s - self.latura2) * (s - self.latura3)) ** 0.5
+    
+    def calculare_perimetru(self):
+        return self.latura1 + self.latura2 + self.latura3
 
-    def este_goala(self):
-        return len(self.elemente) == 0
+cerc = Cerc(5)
+print(f'Aria cercului: {cerc.calculare_aria()}')
+print(f'Perimetrul cercului: {cerc.calculare_perimetru()}')
 
-stiva = Stiva()
-stiva.push(1)
-stiva.push(2)
-stiva.push(3)
+dreptunghi = Dreptunghi(4, 6)
+print(f'Aria dreptunghiului: {dreptunghi.calculare_aria()}')
+print(f'Perimetrul dreptunghiului: {dreptunghi.calculare_perimetru()}')
 
-print(stiva.pop())  # 3
-print(stiva.peek())  # 2
-print(stiva.pop())  # 2
-print(stiva.pop())  # 1
-print(stiva.pop())  # None
+triunghi = Triunghi(3, 4, 5)
+print(f'Aria triunghiului: {triunghi.calculare_aria()}')
+print(f'Perimetrul triunghiului: {triunghi.calculare_perimetru()}')
