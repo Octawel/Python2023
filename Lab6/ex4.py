@@ -11,7 +11,6 @@ def numara_fisiere_cu_extensii(cale_director):
                 _, extensie = os.path.splitext(fisier)
                 dict_extensii[extensie] += 1
 
-        # Afișăm rezultatele
         for extensie, numar in dict_extensii.items():
             print(f"{extensie}: {numar} fișiere")
 
