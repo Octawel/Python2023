@@ -54,3 +54,35 @@ class XSiO:
         _, (linie, coloana) = self.minmax(self.tabla, True)
         return linie, coloana
 
+    def minmax(self, tabla, maximizingPlayer):
+        celule_libere = self.obtine_celule_libere()
+
+        if self.verifica_mutare_castigatoare(tabla, 'X'):
+            return -10, None
+        elif self.verifica_mutare_castigatoare(tabla, 'O'):
+            return 10, None
+        elif not celule_libere:
+            return 0, None
+
+        if maximizingPlayer:
+            maxEval = float("-inf")
+            cea_mai_buna_mutare = None
+            for celula in celule_libere:
+                tabla[celula[0]][celula[1]] = 'O'
+                evaluare, _ = self.minmax(tabla, False)
+                tabla[celula[0]][celula[1]] = ' '
+                if evaluare > maxEval:
+                    maxEval = evaluare
+                    cea_mai_buna_mutare = celula
+            return maxEval, cea_mai_buna_mutare
+        else:
+            minEval = float("inf")
+            cea_mai_buna_mutare = None
+            for celula in celule_libere:
+                tabla[celula[0]][celula[1]] = 'X'
+                evaluare, _ = self.minmax(tabla, True)
+                tabla[celula[0]][celula[1]] = ' '
+                if evaluare < minEval:
+                    minEval = evaluare
+                    cea_mai_buna_mutare = celula
+            return minEval, cea_mai_buna_mutare
