@@ -34,3 +34,6 @@ class XSiO:
         elif self.tabla[0][2] == self.tabla[1][1] == self.tabla[2][0] != ' ':
             self.castigator = self.tabla[0][2]
 
+    def obtine_celule_libere(self):
+        return [(i, j) for i in range(3) for j in range(3) if self.tabla[i][j] == ' ']
+
