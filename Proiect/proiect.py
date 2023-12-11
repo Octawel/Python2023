@@ -37,3 +37,15 @@ class XSiO:
     def obtine_celule_libere(self):
         return [(i, j) for i in range(3) for j in range(3) if self.tabla[i][j] == ' ']
 
+    def ia_mutare_optima(self):
+        if self.dificultate == 1:
+            linie, coloana = random.choice(self.obtine_celule_libere())
+        elif self.dificultate == 2:
+            if random.random() < 0.5:
+                linie, coloana = random.choice(self.obtine_celule_libere())
+            else:
+                linie, coloana = self.obtine_mutare_optima()
+        else:
+            linie, coloana = self.obtine_mutare_optima()
+
+        self.face_mutare(linie, coloana)
