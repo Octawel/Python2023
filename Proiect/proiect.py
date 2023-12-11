@@ -49,3 +49,8 @@ class XSiO:
             linie, coloana = self.obtine_mutare_optima()
 
         self.face_mutare(linie, coloana)
+
+    def obtine_mutare_optima(self):
+        _, (linie, coloana) = self.minmax(self.tabla, True)
+        return linie, coloana
+
