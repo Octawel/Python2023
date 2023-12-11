@@ -96,3 +96,63 @@ class XSiO:
            tabla[0][2] == tabla[1][1] == tabla[2][0] == jucator:
             return True
         return False
+    
+class InterfataXSiO:
+    def __init__(self, root, joc):
+        self.root = root
+        self.root.title("X și O")
+        self.joc = joc
+
+        self.butoane = [[None for _ in range(3)] for _ in range(3)]
+        for i in range(3):
+            for j in range(3):
+                self.butoane[i][j] = tk.Button(root, text='', font=('normal', 20), width=5, height=2,
+                                              command=lambda linie=i, coloana=j: self.on_click(linie, coloana))
+                self.butoane[i][j].grid(row=i, column=j)
+
+        self.variabila_dificultate = tk.StringVar()
+        self.variabila_dificultate.set("1")
+        self.meniu_dificultate = tk.OptionMenu(root, self.variabila_dificultate, "1", "2", "3")
+        self.meniu_dificultate.grid(row=3, column=0, pady=10)
+
+        self.butoane_resetare = tk.Button(root, text='Resetează', font=('normal', 14), width=10, command=self.reseteaza_joc)
+        self.butoane_resetare.grid(row=3, column=1, pady=10)
+
+        self.eticheta_mesaj = tk.Label(root, text='', font=('normal', 16))
+        self.eticheta_mesaj.grid(row=4, column=0, columnspan=3)
+
+        self.reseteaza_joc()
+
+    def on_click(self, linie, coloana):
+        if self.joc.tabla[linie][coloana] == ' ' and not self.joc.este_sfidat():
+            self.joc.face_mutare(linie, coloana)
+            self.actualizeaza_tabla()
+            if not self.joc.este_sfidat() and self.joc.jucator_curent == 'O':
+                self.joc.ia_mutare_optima()
+                self.actualizeaza_tabla()
+
+    def actualizeaza_tabla(self):
+        for i in range(3):
+            for j in range(3):
+                self.butoane[i][j].config(text=self.joc.tabla[i][j])
+
+        if self.joc.este_sfidat():
+            if self.joc.castigator:
+                self.eticheta_mesaj.config(text=f"Câștigător: {self.joc.castigator}")
+            else:
+                self.eticheta_mesaj.config(text="E remiză!")
+        else:
+            self.eticheta_mesaj.config(text=f"Jucător curent: {self.joc.jucator_curent}")
+
+    def reseteaza_joc(self):
+        dificultate = int(self.variabila_dificultate.get())
+        self.joc = XSiO(dificultate)
+        self.actualizeaza_tabla()
+
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    joc = XSiO()
+    app = InterfataXSiO(root, joc)
+    root.mainloop()
+
