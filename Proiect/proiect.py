@@ -14,3 +14,7 @@ class XSiO:
             self.tabla[linie][coloana] = self.jucator_curent
             self.verifica_castigator()
             self.schimba_jucator()
+    
+    def schimba_jucator(self):
+        self.jucator_curent = 'O' if self.jucator_curent == 'X' else 'X'
+
