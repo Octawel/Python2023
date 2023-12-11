@@ -18,3 +18,6 @@ class XSiO:
     def schimba_jucator(self):
         self.jucator_curent = 'O' if self.jucator_curent == 'X' else 'X'
 
+    def este_sfidat(self):
+        return self.castigator is not None or all(all(celula != ' ' for celula in rand) for rand in self.tabla)
+
