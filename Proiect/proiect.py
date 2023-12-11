@@ -86,3 +86,13 @@ class XSiO:
                     minEval = evaluare
                     cea_mai_buna_mutare = celula
             return minEval, cea_mai_buna_mutare
+        
+    def verifica_mutare_castigatoare(self, tabla, jucator):
+        for i in range(3):
+            if tabla[i][0] == tabla[i][1] == tabla[i][2] == jucator or \
+               tabla[0][i] == tabla[1][i] == tabla[2][i] == jucator:
+                return True
+        if tabla[0][0] == tabla[1][1] == tabla[2][2] == jucator or \
+           tabla[0][2] == tabla[1][1] == tabla[2][0] == jucator:
+            return True
+        return False
